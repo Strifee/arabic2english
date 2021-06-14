@@ -16,4 +16,3 @@ if torch.cuda.is_available():
   print("gpu up")
 else:  
   dev = "cpu"  
-device = torch.device(dev)
