@@ -1,12 +1,9 @@
-import math
 import pandas as pd
-import torchtext
-import torch
 import torch.nn as nn
 import random
 import re
 import spacy
-from torchtext import data
+from torchtext.legacy import data
 from spacy.tokenizer import Tokenizer
 from spacy.lang.en import English
 from spacy.lang.ar import Arabic

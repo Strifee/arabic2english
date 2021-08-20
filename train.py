@@ -1,10 +1,4 @@
-import pandas as pd
-import numpy as np 
-from torch import nn
 import torch
-from torchtext import data
-from torch.nn  import functional as F
-import torch.optim as  optim 
 from data_processing import SRC,TRG
 from transformer import Transformer
 
