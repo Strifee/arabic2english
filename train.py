@@ -5,7 +5,7 @@ import torch
 from torchtext import data
 from torch.nn  import functional as F
 import torch.optim as  optim 
-from data_processing import SRC,TARGET
+from data_processing import SRC,TRG
 from transformer import Transformer
 
 class Trainer():
@@ -13,23 +13,30 @@ class Trainer():
     load_model = False
     save_model = True
 
-    #Training hyperparameters
-    num_epochs = 5
-    learning_rate = 3e-4
-    batch_size = 32
+    num_epochs = 40
+    learning_rate = 0.0003
 
-    #Model hyperparameters
-    src_vocab_size = len(SRC.vocab)
-    trg_vocab_size = len(TARGET.vocab)
-
-    embedding_size = 256
     num_heads = 8
     num_encoder_layers = 3
     num_decoder_layers = 3
-    max_len= 227
-    src_pad_idx =SRC.vocab.stoi["<pad>"]
-    
-    model = Transformer(
+
+    max_len= 230
+    dropout = 0.10
+    embedding_size= 256
+    src_pad_idx = SRC.vocab.stoi["<pad>"]
+    forward_expansion = 4
+    step = 0
+
+
+    src_vocab_size  = len(SRC.vocab)
+    print("Size of english vocabulary:",src_vocab_size)
+
+    #No. of unique tokens in label
+    trg_vocab_size =len(TRG.vocab)
+    print("Size of arabic vocabulary:",trg_vocab_size)
+
+
+    model = Transformer(        
         embedding_size,
         src_vocab_size,
         trg_vocab_size,
@@ -37,5 +44,8 @@ class Trainer():
         num_heads,
         num_encoder_layers,
         num_decoder_layers,
-        max_len
+        forward_expansion,
+        dropout,
+        max_len,
+        device,
     ).to(device)

@@ -6,14 +6,6 @@ from torchtext import data
 from torch.nn  import functional as F
 import torch.optim as  optim 
 
-if torch.cuda.is_available():  
-  dev = "cuda:0" 
-
-  print("gpu up")
-else:  
-  dev = "cpu"  
-device = torch.device(dev)
-
 class Transformer(nn.Module):
     def __init__(
         self,
@@ -30,10 +22,10 @@ class Transformer(nn.Module):
         device,
     ):
         super(Transformer, self).__init__()
-        self.src_word_Embeddings = nn.Embedding(src_vocab_size,embedding_size)
-        self.src_Positional_Embeddings= nn.Embedding(max_len,embedding_size)
-        self.trg_Embeddings= nn.Embedding(trg_vocab_size,embedding_size)
-        self.trg_Positional_Embeddings= nn.Embedding(max_len,embedding_size)
+        self.src_embeddings = nn.Embedding(src_vocab_size,embedding_size)
+        self.src_positional_embeddings= nn.Embedding(max_len,embedding_size)
+        self.trg_embeddings= nn.Embedding(trg_vocab_size,embedding_size)
+        self.trg_positional_embeddings= nn.Embedding(max_len,embedding_size)
         self.device = device
         self.transformer = nn.Transformer(
             embedding_size,
@@ -51,31 +43,35 @@ class Transformer(nn.Module):
     def make_src_mask(self, src):
         src_mask = src.transpose(0,1) == self.src_pad_idx
 
-        return src_mask.to(device)
+        return src_mask
 
     def forward(self,src,trg):
-        src_seq_length = src.shape
-        trg_seq_length = trg.shape
+        src_seq_length, S = src.shape
+        trg_seq_length, S = trg.shape
         #adding zeros is an easy way
         src_positions = (
-            torch.arange(0, src_seq_length)
-            .reshape(src_seq_length,1)  + torch.zeros(src_seq_length,N) 
-        ).to(device)
+            torch.arange(0, src_seq_length).unsqueeze(1).expand(src_seq_length, S).to(self.device)
+        )
+        
         
         trg_positions = (
-            torch.arange(0, trg_seq_length)
-            .reshape(trg_seq_length,1)  + torch.zeros(trg_seq_length,N) 
-        ).to(device)
+            torch.arange(0, trg_seq_length).unsqueeze(1).expand(trg_seq_length, S).to(self.device)
+        )
 
+        embed_src  = self.dropout(
+                ( self.src_embeddings(src) + self.src_positional_embeddings(src_positions) )
+            )
 
-        srcWords = self.dropout(self.srcEmbeddings(x.long()) +self.srcPositionalEmbeddings(src_positions.long()))
-        trgWords = self.dropout(self.trgEmbeddings(trg.long())+self.trgPositionalEmbeddings(trg_positions.long()))
+        embed_trg = self.dropout(
+                ( self.trg_embeddings(trg) + self.trg_positional_embeddings(trg_positions) )
+            )
         
-        src_padding_mask = self.make_src_mask(x)
+        src_padding_mask = self.make_src_mask(src)
         trg_mask = self.transformer.generate_square_subsequent_mask(trg_seq_length).to(device)
         
         
-        out = self.transformer(srcWords,trgWords, src_key_padding_mask=src_padding_mask,tgt_mask=trg_mask )
+        out = self.transformer(embed_src,embed_trg, src_key_padding_mask=src_padding_mask,tgt_mask=trg_mask )
         out= self.fc_out(out)
+
         return out
         
