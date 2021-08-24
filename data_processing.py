@@ -7,11 +7,7 @@ from torchtext.legacy import data
 from spacy.tokenizer import Tokenizer
 from spacy.lang.en import English
 from spacy.lang.ar import Arabic
-from nltk.translate.bleu_score import sentence_bleu
-from torchtext.data.utils import get_tokenizer
-from collections import Counter
-from torchtext.vocab import Vocab
-from torch import Tensor
+
 
 
 random.seed(0)
@@ -34,7 +30,7 @@ def arTokenizer(sentence):
              ar_Tokenizer(re.sub(r"\s+"," ",re.sub(r"[\.\'\"\n+]"," ",sentence)).strip())]
 
 SRC = data.Field(tokenize=engTokenizer,batch_first=False,init_token="<sos>",eos_token="<eos>")
-TARGET = data.Field(tokenize=arTokenizer,batch_first=False,tokenizer_language="ar",init_token="ببدأ",eos_token="نهها")
+TRG = data.Field(tokenize=arTokenizer,batch_first=False,tokenizer_language="ar",init_token="ببدأ",eos_token="نهها")
 
 class TextDataset(data.Dataset):
 
@@ -54,13 +50,13 @@ class TextDataset(data.Dataset):
     def __getitem__(self, idx):
         return self.samples[idx]
 
-torchdataset = TextDataset(df,SRC,TARGET)
+torchdataset = TextDataset(df,SRC,TRG)
 
 train_data, valid_data = torchdataset.split(split_ratio=0.8, random_state = random.seed(0))
 
 SRC.build_vocab(train_data,min_freq=2)
-TARGET.build_vocab(train_data,min_freq=2)
+TRG.build_vocab(train_data,min_freq=2)
 
 if __name__=='__main__':
-    print(TARGET.vocab.freqs.most_common(50))  
+    print(TRG.vocab.freqs.most_common(50))  
 

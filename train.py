@@ -88,8 +88,7 @@ for epoch in range(num_epochs):
         stepLoss.append(loss.item())
 
     loss_track.append(np.mean(stepLoss))
-    print("train crossentropy at epoch {} loss: ".format(epoch),np.mean(stepLoss))
-
+    print(" Epoch {} | Train Cross Entropy Loss: ".format(epoch),np.mean(stepLoss))
     with torch.no_grad():    
       stepValidLoss=[]
       model.eval() # the evaluation mode for the model (doesn't apply dropout and batchNorm)
@@ -105,5 +104,4 @@ for epoch in range(num_epochs):
             stepValidLoss.append(loss.item())
     
     loss_validation_track.append(np.mean(stepValidLoss))
-    print("validation crossentropy at epoch {} loss: ".format(epoch),np.mean(stepValidLoss))   
-  
+    print(" Epoch {} | Validation Cross Entropy Loss: ".format(epoch),np.mean(stepValidLoss))   
