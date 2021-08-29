@@ -48,9 +48,9 @@ $ git clone clone https://github.com/Strifee/arabic2english.git
 $ python translate.py
 ```
 # Results
+![image](https://github.com/Strifee/arabic2english/tree/main/img/output.png)
+<br/>
 
 # Example
 
-```
-$ git clone clone https://github.com/Strifee/arabic2english.git
-```
+check the notebook `translation.ipynb`
