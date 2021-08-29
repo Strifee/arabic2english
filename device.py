@@ -1,6 +1,3 @@
-'''
- for rtx 30 series : conda install -q pytorch torchvision cudatoolkit=11 -c pytorch-nightly
-'''
 import torch
 
  
