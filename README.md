@@ -24,16 +24,8 @@ conda install -q pytorch torchvision cudatoolkit=11 -c pytorch-nightly
 ```
 
 # Data
-**1. Arab-Acquis Dataset :**
 
-[Arab-Acquis](https://aclanthology.org/E17-2038.pdf) is a large dataset for evaluating machine translation between 22 European languages and Arabic. Arab-Acquis consists of over 12,000 sentences from the JRCAcquis (Acquis Communautaire) corpus translated twice by professional translators, once from English and once from French, and totaling over 600,000 words. 
-<br/>
-
-`Download Arab-Acquis dataset and put it into folder `
-
-<br/>
-
-**2. Arabic to English Translation Sentences :**
+** Arabic to English Translation Sentences :**
 
 [Arabic to English Translation Sentences](https://www.kaggle.com/samirmoustafa/arabic-to-english-translation-sentences) is a dataset for machine translation between English  and Arabic.
 
