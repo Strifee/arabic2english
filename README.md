@@ -25,7 +25,7 @@ conda install -q pytorch torchvision cudatoolkit=11 -c pytorch-nightly
 
 # Data
 
-** Arabic to English Translation Sentences :**
+**Arabic to English Translation Sentences :**
 
 [Arabic to English Translation Sentences](https://www.kaggle.com/samirmoustafa/arabic-to-english-translation-sentences) is a dataset for machine translation between English  and Arabic.
 
