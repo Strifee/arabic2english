@@ -7,8 +7,7 @@ from data_processing import SRC,TRG
 from transformer import Transformer
 from device import device
 from data_processing import train_data, valid_data 
-
-BATCH_SIZE = 16
+from hyper_parameters import BATCH_SIZE, embedding_size, src_pad_idx, num_heads, num_encoder_layers, num_decoder_layers, forward_expansion, dropout, max_len, learning_rate, num_epochs
 
 train_iter, valid_iter = data.BucketIterator.splits(
     (train_data,valid_data), 
@@ -19,24 +18,6 @@ train_iter, valid_iter = data.BucketIterator.splits(
     device = device,
     shuffle=True
 )
-
-load_model = False
-save_model = True
-
-num_epochs = 40
-learning_rate = 0.0003
-
-num_heads = 8
-num_encoder_layers = 3
-num_decoder_layers = 3
-
-max_len= 230
-dropout = 0.10
-embedding_size= 256
-src_pad_idx = SRC.vocab.stoi["<pad>"]
-forward_expansion = 4
-step = 0
-
 
 src_vocab_size  = len(SRC.vocab)
 print("Size of english vocabulary:",src_vocab_size)

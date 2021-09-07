@@ -5,7 +5,6 @@ import re
 import spacy
 from torchtext.legacy import data
 from spacy.tokenizer import Tokenizer
-from spacy.lang.en import English
 from spacy.lang.ar import Arabic
 
 
