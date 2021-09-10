@@ -40,9 +40,10 @@ $ git clone clone https://github.com/Strifee/arabic2english.git
 $ python translate.py
 ```
 # Results
-![image](img/output.png)
-<br/>
+```
+"I'm ready" -> 'أنا مستعد'
+"i'm lucky"  -> 'انا محظوظ'
+"I'm sad" -> 'أنا حزين'
 
-# Example
+```
 
-check the notebook `translation.ipynb`
