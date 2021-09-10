@@ -54,10 +54,13 @@ max_len= 230
 dropout = 0.4
 embedding_size= 256
 ```
-Before regularization :
+### Before regularization :
 ![image](img/output1.png)
-After regularization :
+<br/>
+
+### After regularization :
 ![image](img/output.png)
+<br/>
 
 # Results
 ```
