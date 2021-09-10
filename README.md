@@ -40,7 +40,7 @@ $ git clone clone https://github.com/Strifee/arabic2english.git
 $ python translate.py
 ```
 **2. Regularization**
-### Parameters :
+### Hyperparameters :
 ```python
 BATCH_SIZE = 16
 learning_rate = 0.0001
