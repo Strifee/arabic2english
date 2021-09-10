@@ -39,6 +39,26 @@ $ git clone clone https://github.com/Strifee/arabic2english.git
 ```
 $ python translate.py
 ```
+**2. Regularization**
+Parameters :
+```python
+BATCH_SIZE = 16
+learning_rate = 0.0001
+num_epochs = 30
+
+num_heads = 8
+num_encoder_layers = 3
+num_decoder_layers = 3
+
+max_len= 230
+dropout = 0.4
+embedding_size= 256
+```
+Before regularization :
+![image](img/output1.png)
+After regularization :
+![image](img/output.png)
+
 # Results
 ```
 "I'm ready" -> 'أنا مستعد'
