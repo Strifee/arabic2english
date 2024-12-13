@@ -12,7 +12,7 @@ install [CUDA](https://developer.nvidia.com/cuda-downloads) before installing th
 <br/>
 **2. Clone the Translate repo:**
 ```
-$ git clone clone https://github.com/Strifee/arabic2english.git
+$ git clone https://github.com/Strifee/arabic2english.git
 ```
 **3. install requirements:**
 ```
