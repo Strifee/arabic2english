@@ -3,6 +3,19 @@
 
 **This is a PyTorch implementation of an Arabic to English Neural Machine Translation built using Transformers architecture ([Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf))**
 
+## Why Arabic→English is Hard
+Arabic is morphologically rich — one word can express 
+what takes a full sentence in English. It's also right-to-left
+with complex root-based derivation. Standard seq2seq models 
+struggle with this — Transformers handle it better due to 
+attention mechanisms capturing long-range dependencies.
+
+## Model Architecture
+- Custom Transformer (Attention Is All You Need)
+- 3 encoder + 3 decoder layers
+- 8 attention heads
+- Embedding size: 256
+- Trained from scratch — no pretrained weights
 
 # Setup and Requirements
 **1. CUDA:**
